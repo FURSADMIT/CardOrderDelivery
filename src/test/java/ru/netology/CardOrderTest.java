@@ -12,11 +12,11 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static ru.netology.Date.generateDate;
 
-public class CardOrderDeliveryTest {
+public class CardOrderTest {
 
     @BeforeEach
     void setUp() {
-        open("http://0.0.0.0:7777/");
+        open("http://localhost:9999/");
     }
 
     String planningDate = generateDate(3, "dd.MM.yyyy");
@@ -53,7 +53,6 @@ public class CardOrderDeliveryTest {
                 .shouldBe(visible)
                 .shouldHave(text("Доставка в выбранный город недоступна"));
     }
-
 
     @Test
     void invalidNameFieldTest() {
@@ -113,6 +112,7 @@ public class CardOrderDeliveryTest {
                 .shouldBe(visible)
                 .shouldHave(text("Поле обязательно для заполнения"));
     }
+
 
     @Test
     void nullNameFieldTest() {
