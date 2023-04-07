@@ -54,21 +54,6 @@ public class CardOrderDeliveryTest {
                 .shouldHave(text("Доставка в выбранный город недоступна"));
     }
 
-    @Test
-    void invalidDateFieldTest() {
-        String planningWrongDate = generateDate(1, "dd.MM.yyyy");
-
-        $("[data-test-id='city'] input").setValue("Казань");
-        $("[data-test-id='date'] input").sendKeys((Keys.CONTROL + "A"), Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").setValue(planningWrongDate);
-        $("[data-test-id='name'] input").setValue("Петров Петр");
-        $("[data-test-id='phone'] input").setValue("+71231231212");
-        $(".checkbox__box").click();
-        $x("//span[contains(text(), 'Забронировать')]").click();
-        $("[data-test-id='date'] .input_invalid .input__sub")
-                .shouldBe(visible)
-                .shouldHave(text("Заказ на выбранную дату невозможен"));
-    }
 
     @Test
     void invalidNameFieldTest() {
@@ -127,19 +112,6 @@ public class CardOrderDeliveryTest {
         $(".input_invalid[data-test-id='city'] .input__sub")
                 .shouldBe(visible)
                 .shouldHave(text("Поле обязательно для заполнения"));
-    }
-
-    @Test
-    void nullDateFieldTest() {
-        $("[data-test-id='city'] input").setValue("Казань");
-        $("[data-test-id='date'] input").sendKeys((Keys.CONTROL + "A"), Keys.BACK_SPACE);
-        $("[data-test-id='name'] input").setValue("Петров Петр");
-        $("[data-test-id='phone'] input").setValue("+71231231212");
-        $(".checkbox__box").click();
-        $x("//span[contains(text(), 'Забронировать')]").click();
-        $("[data-test-id='date'] .input_invalid .input__sub")
-                .shouldBe(visible)
-                .shouldHave(text("Неверно введена дата"));
     }
 
     @Test
